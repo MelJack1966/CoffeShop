@@ -19,8 +19,12 @@ $doctrineCacheDriver = new FilesystemCache("cache");
 
 $botman = BotManFactory::create($config, new DoctrineCache($doctrineCacheDriver));
 
-$botman->hears('.*ay.*', function (BotMan $bot) {
+$botman->hears('.*ex1.*', function (BotMan $bot) {
     $bot->startConversation(new ExampleConversation1);
+});
+
+$botman->hears('.*ex2.*', function (BotMan $bot) {
+    $bot->startConversation(new ExampleConversation2);
 });
 
 // Give the bot something to listen for.
