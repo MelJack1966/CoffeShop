@@ -3,10 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2022 at 08:04 PM
+-- Generation Time: Apr 04, 2022 at 10:06 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.28
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -170,7 +171,8 @@ INSERT INTO `users` (`id`, `name`, `username`, `password`) VALUES
 -- Indexes for table `items`
 --
 ALTER TABLE `items`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `type_fk` (`type`);
 
 --
 -- Indexes for table `orders`
@@ -251,6 +253,12 @@ ALTER TABLE `users`
 --
 
 --
+-- Constraints for table `items`
+--
+ALTER TABLE `items`
+  ADD CONSTRAINT `type_fk` FOREIGN KEY (`type`) REFERENCES `type` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
@@ -263,6 +271,7 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `transactions`
   ADD CONSTRAINT `user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
