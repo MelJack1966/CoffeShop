@@ -6,6 +6,7 @@ use BotMan\BotMan\Messages\Incoming\Answer;
 class FoodConversation extends Conversation
 {
     protected $food;
+    global $db;
 
     public function askFood()
     {
@@ -13,7 +14,7 @@ class FoodConversation extends Conversation
 
             $this->food = $answer->getText();
             if(isset($_REQUEST["term"])){
-              $sql = "SELECT * FROM  items WHERE type === 1 AND 
+              $sql = "SELECT * FROM  items WHERE type === 1 AND
                 WHERE name LIKE ?";
               if($stmt = mysqli_prepare($conn, $sql)){
                 mysqli_stmt_bind_param($stmt, "s", $param_term);

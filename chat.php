@@ -15,7 +15,7 @@ $config = [
 $botman = BotManFactory::create($config);
 
 $botman->hears('.*ay.*', function (BotMan $bot) {
-    $bot->startConversation(new OnboardingConversation);
+    $bot->startConversation(new FoodConversation);
 });
 
 // Give the bot something to listen for.
@@ -24,8 +24,9 @@ $botman->hears('.*hi.*', function (BotMan $bot) {
 });
 
 $botman->hears('.*bye.*', function (BotMan $bot) {
+    global $db;
     $bot->reply('Good Bye');
-    $db->close();
+    $db->db_disconnect($db);
 });
 
 $botman->fallback(function($bot) {
