@@ -1,0 +1,9 @@
+#menu-container {
+    margin: auto;
+    max-width: 540px;
+}
+
+#menu {
+    max-width: 100%;
+    min-width: 540px;
+}
