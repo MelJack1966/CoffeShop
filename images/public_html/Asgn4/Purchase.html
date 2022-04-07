@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dan's HOM Knockoff Site - Purchase</title>
+	<link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"> 
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="header">
+		<div class="container">
+			<div class="navbar">
+				<div class="logo">
+					<img src="images/logo.png" width="125px">
+				</div>
+				<nav>
+					<ul id="MenuItems">
+						<li><a href="">Home</a></li>
+						<li><a href="">Products</a></li>
+						<li><a href="">About</a></li>
+						<li><a href="">Contact</a></li>
+						<li><a href="">Accounts</a></li>
+					</ul>
+				</nav>
+				<img src="images2/cart.png" width="30px" height="30px">
+				<img src="images2/menu.png" class="menu-icon" onclick="menutoggle()">
+			</div>
+			
+		</div>
+	</div>
+    <div class="small-container">
+		<h2 class="title">Purchase!</h2>
+		<div class="row">
+			<div class="col-1">
+				<form action="PurchaseOrder.php" method="POST">
+					<label for="uname">Purchaser Name:</label>
+						<input type="text" id="uname" name="uname"><br>
+					<label for="uaddress">Address:</label>
+						<textarea id="uaddress" name="uaddress" rows="2" cols="30">Enter your address here.</textarea><br>
+					<label for="furnchoice">Your furniture selection:</label>
+						<select name="furnchoice" id="furnchoice">
+							<option = "select">Furniture Options:</option>
+							<option value="1">Bed - 299.99</option>
+							<option value="2">Bed Package - 999.99</option>
+							<option value="3">Big Green Egg - Large - 979.99</option>
+							<option value="4">Chair - 1,399.99</option>
+							<option value="5">Lamp - 33.99</option>
+							<option value="6">Love Seat - 299.99</option>
+							<option value="7">Mattress - 409.99</option>
+							<option value="8">Mirror - 349.99</option>
+							<option value="9">3 Piece Rocker Set - 399.99</option>
+							<option value="10">Rug - 349.99</option>
+							<option value="11">Sofa - 319.99</option>
+							<option value="12">Table - 499.99</option>
+							<option value="13">Chair - 99.99</option>
+						</select><br>
+					<label for="transport">Pick-Up or Delivery?</label>
+						<select name="transport" id="transport">
+							<option = "select">Transportation Options:</option>
+							<option value="1">Pick Up</option>
+							<option value="2">Delivery</option>
+						</select><br> 
+					<label for="membership">Membership:</label>
+						<select name="membership" id="membership">
+							<option = "select">Membership Options:</option>
+							<option value="1">No Membership</option>
+							<option value="2">Current Member</option>
+							<option value="3">Purchase Membership</option>
+						</select><br> 
+					<label for="quantity">Quantity:</label>
+						<input type="text" name="quantity" size="3" maxlength="3"/><br>
+						<input type="submit" value="Submit &#8594;" class="btn">
+				</form>
+			</div>
+		</div>
+	</div>
+<!--------- FOOTER --------->
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-col-1">
+                <h3>Download our App</h3>
+                <p>Download App for Android and IOS mobile phone</p>
+                <div class="app-logo">
+                    <img src="images/play-store.png">
+                    <img src="images/app-store.png">
+                </div>
+            </div>
+            <div class="footer-col-2">
+                <img src="images/logo.png">
+                <p>My purpose is to make a fake website that uses images from HOM furniture for ICS 325.  In no way is this a real site, and you should treat this as such.</p>
+            </div>
+            <div class="footer-col-3">
+                <h3>Useful links</h3>
+                <ul>
+                    <li>Coupons</li>
+                    <li>Blog Post</li>
+                    <li>Return Policy</li>
+                    <li>Join Affiliate</li>
+                </ul>
+            </div>
+            <div class="footer-col-4">
+                <h3>Follor Us</h3>
+                <ul>
+                    <li>Facebook</li>
+                    <li>Twitter</li>
+                    <li>Instagram</li>
+                    <li>YouTube</li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <p class="copyright">Copyright 2021 - Dan's HOM Knockoff</p>
+    </div>
+</div>
+
+
+</body>
+</html>
