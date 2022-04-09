@@ -2,6 +2,8 @@
 require_once 'vendor/autoload.php';
 require_once 'conversations/ExampleConversation1.php';
 require_once 'conversations/ExampleConversation2.php';
+require_once 'conversations/Welcome.php';
+require_once 'conversations/MakeOrder.php';
 
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\BotManFactory;
@@ -10,14 +12,11 @@ use BotMan\BotMan\Drivers\DriverManager;
 use Doctrine\Common\Cache\FilesystemCache;
 
 DriverManager::loadDriver(\BotMan\Drivers\Web\WebDriver::class);
-
-$config = [
-    'conversation_cache_time' => 60
-];
-
+$config = ['conversation_cache_time' => 60];
 $doctrineCacheDriver = new FilesystemCache("cache");
-
 $botman = BotManFactory::create($config, new DoctrineCache($doctrineCacheDriver));
+
+/////////BOT LOGIC/////////
 
 $botman->hears('.*ex1.*', function (BotMan $bot) {
     $bot->startConversation(new ExampleConversation1);
@@ -27,9 +26,12 @@ $botman->hears('.*ex2.*', function (BotMan $bot) {
     $bot->startConversation(new ExampleConversation2);
 });
 
-// Give the bot something to listen for.
+// WELCOME MESSAGE
 $botman->hears('.*hi.*', function (BotMan $bot) {
-    $bot->reply('Hello! Would you like some coffee?');
+    $bot->startConversation(new Welcome);
+});
+$botman->hears('.*hello.*', function (BotMan $bot) {
+    $bot->startConversation(new Welcome);
 });
 
 $botman->hears('.*bye.*', function (BotMan $bot) {
