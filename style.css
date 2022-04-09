@@ -3,10 +3,7 @@
 	padding: 0;
 	box-sizing: border-box;
 }
-.center{
-	margin-left: auto;
-	margin-right: auto;
-}
+
 body{
 	font-family: 'Poppins', sans-serif;
 	position: relative;
@@ -37,7 +34,7 @@ a{
 		color: #aaa;
 }
 p{
-		color: #000;
+		color: rgb(224, 206, 206);
 }
 .container{
 		max-width: 1300px;
@@ -50,10 +47,6 @@ p{
 	align-items: center;
 	flex-wrap: wrap;
 	justify-content: space-around;
-}
-.col-1{
-	flex-basis: 100%;
-	
 }
 .col-2{
 		flex-basis: 50%;
@@ -70,94 +63,25 @@ p{
 }
 .btn{
 	display: inline-block;
-	padding: 8px 10px;
-	border-radius: 30px;
-	transition: background 0.5s;
-	width: 150px;
-	height: 45px;
-
-}
-.btn2{
-	display: inline-block;
-	padding: 8px 10px;
-	border-radius: 30px;
-	transition: background 0.5s;
-	width: 100px;
-	height: 25px;
-	font-size: 12px;
-
-}
-.btnm{
-	margin: 30px 0;
-}
-.btn-primary{
-	margin: 30px 0;
 	background: #ff523b;
 	color: #fff;
-}
-.btn-yellow{
-	background: #ffe23b;
-	color: #000;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 5px, 0;
-}
-.btn-orange{
-	background: #eb8704;
-	color: #fff;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 5px, 0;
-}
-.btn-green{
-	background: #3ba13b;
-	color: #fff;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-.btn-dblue{
-	background: #14449e;
-	color: #fff;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-.btn-lblue{
-	background: #5e84cc;
-	color: #fff;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-.btn-red{
-	background: #ff0000;
-	color: #fff;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-.btn-blackred{
-	background: #000000;
-	color: rgb(255, 0, 0);
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	padding: 8px 30px;
+	margin: 30px 0;
+	border-radius: 30px;
+	transition: background 0.5s;
 }
 .btn:hover{
 	background: #563434;
 }
 .header{
-	background: radial-gradient(#2f07e4,#2f07e4);
+	background: radial-gradient(#0c032eaf,#0c032eaf);
 
 }
 .header .row{
 	margin-top: 70px;
 }
 .categories{
-	margin: 70px 0;
+	margin: 0px 0;
 }
 .col-3{
 	flex-basis: 30%;
@@ -293,11 +217,14 @@ small{
 .col-5 img:hover{
 	filter: grayscale(0);
 }
-
+/*div*/
+.Backgrounddiv {
+	background: url("images/homeyoga.jpg");
+}
 /*-----FOOTER-----*/
 .footer{
 	
-   	background: #2f07e4;
+   	background: #0c032eaf;
 	color: #8a8a8a;
 	font-size: 14px;
 	padding: 20px 0 10px;

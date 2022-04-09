@@ -1,54 +1,57 @@
+<?php 
+//header
+session_start(); 
+if (isset($_SESSION['loggedin'])){
+	if ($_SESSION['loggedin'] == 1) { 
+		if ($_SESSION['role'] == 1) {
+			include("static/header3.html");
+		}else {
+			include("static/header2.html");
+		}
+	} else {
+		include("static/header1.html");
+	}
+} else {
+	include("static/header1.html");
+}  
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>FindersKeepers Home</title>
+	<title>CofeeBot Home</title>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/assets/css/chat.min.css">
 	<link rel="stylesheet" href="style.css">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"> 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="script.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
 </head>
 <body>
+<!--<script id="botmanWidget" src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/chat.js'></script> --->
+<!---------- Featured Categories ---------->
+<div class="Backgrounddiv">
 
-	<?php 
-		//<!---------- Header ---------->
-		include "dynamic/DBController.php";
-		session_start(); 
-		include "static/header.php";
-	?>
-
-	<!---------- TITLE ---------->
-	<div class="categories">
-		<div class="small-container">
-			<div class="row">
-				<h1 class="title">Welcome to FindersKeepers!</h1>
-				<p>Your one stop location to buy, sell, trade, and barter with your neighbors and those around you for any item you may want to.</p>
-			</div>
-		</div>
-	</div>
-
-	<!-------- Active Listing - 4 randomly active listing --------->
 	<div class="small-container">
-		<center><h3 class="title">Active Listings</h3>
+	<h2 class="title">Welcome CoffeeBot!</h2>
 		<div class="row">
-			<?php
-				$sql="select title, itemID, filename from items where status=1 order by rand() limit 4";
-				foreach($pdo->query($sql) as $row){
-					echo '<div class="col-4">';
-					echo '<a href="display_item.php?id='.$row["itemID"].'"><img src="images/'.$row['filename'].'" style="width:250px;height: 250px;"></a>';
-					echo '<h4>'.$row['title'].'</h4>';
-					echo '</div>';
-				}
-			?>	
+			
+			<p>The best energy for the day starts with the coffee Aroma.</p>
 		</div>
-		</center>
 	</div>
+	<br><br><br><br>
 
-	<?php
-		//<!-------- FOOTER --------->
-		include("static/footer.html");
-	?>
+
+
+<!-------- Featured Products --------->
+	
+</div>
 </body>
-</html>	
+</html>		
 
-<!-- Created by Dan Shields & Jose Labastida for ICS325 -->
+<?php
+    //footer
+    include("static/footer.html");
+?>

@@ -2,17 +2,26 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>FindersKeepers About</title>
+        <title>CoffeBot About</title>
         <link rel="stylesheet" href="style.css">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"> 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
-        <center>
         <?php
         //header
-        session_start(); 
-        include("static/header.php");
+        include_once("profile.php");
+        session_start();
+        $username = $_SESSION["username"];                            
+        $password = $_SESSION["password"];
+        $login = new Profile();
+        if ($login->login($username, $password)) {
+            $_SESSION["profile"] = serialize($login);
+            include("static/header2.html");
+        } else {
+
+            include("static/header1.html");
+        }
         
         ?>
         
@@ -54,6 +63,5 @@
         <?php
         include("static/footer.html");
         ?>
-        </center>
     </body>
 </html>
