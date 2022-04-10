@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `ics325fa2113`; 
-USE `ics325fa2113`;
+CREATE DATABASE  IF NOT EXISTS `coffeeshopdb`; 
+USE `coffeeshopdb`;
 -- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
--- Host: localhost    Database: ics325fa2113
+-- Host: localhost    Database: coffeeshopdb
 -- ------------------------------------------------------
 -- Server version	8.0.28-0ubuntu0.20.04.3
 
