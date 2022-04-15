@@ -4,9 +4,6 @@ use BotMan\BotMan\Messages\Outgoing\Question;
 use BotMan\BotMan\Messages\Outgoing\Actions\Button;
 use BotMan\BotMan\Messages\Conversations\Conversation;
 
-require_once 'conversations/MakeOrder.php';
-
-
 class Welcome extends Conversation
 {
     protected $likeCoffee = "no";
@@ -17,16 +14,17 @@ class Welcome extends Conversation
         $this->ask('Hi! Would you like to place an order?', function(Answer $answer) {
             $this->likeCoffee = $answer->getText();
             if(
-                $answer->getValue() === "yes" || 
+                $answer->getValue() === "yes" ||
+                $answer->getValue() === "ye" || 
                 $answer->getValue() === "y" ||
                 $answer->getValue() === "yeah") {
-                $this->bot->startConversation(new MakeOrder);
+                $this->bot->startConversation(new PlaceOrder);
             }
             else if(
                 $answer->getValue() == "no" || 
                 $answer->getValue() == "n" ||
                 $answer->getValue() == "nope") {
-                $this->bot->reply("Um.... okay then.\n(☉_☉ )");
+                $this->bot->reply("Um.... okay then. <br><br>(☉_☉ )");
             }
             else {
                 $this->bot->reply("Sorry I couldn't understand that, let's start over.");
