@@ -6,7 +6,7 @@ var botmanWidget = {
     title: 'Coffee Bot',
     mainColor: '#F28240',
     bubbleBackground: '#F28240',
-    bubbleAvatarUrl: 'https://www.applozic.com/assets/resources/images/Chat-Bot-Icon@512px.svg'
+    bubbleAvatarUrl: 'images/icons/coffee1.png'
 };
 
 window.onload = function() {
