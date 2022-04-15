@@ -1,9 +1,8 @@
 <?php
 require_once 'vendor/autoload.php';
-require_once 'conversations/ExampleConversation1.php';
-require_once 'conversations/ExampleConversation2.php';
-require_once 'conversations/Welcome.php';
-require_once 'conversations/MakeOrder.php';
+foreach(glob("conversations/*.php") as $file){
+    require_once $file;
+}
 
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\BotManFactory;
