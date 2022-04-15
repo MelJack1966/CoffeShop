@@ -4,8 +4,18 @@ use BotMan\BotMan\Messages\Outgoing\Question;
 use BotMan\BotMan\Messages\Outgoing\Actions\Button;
 use BotMan\BotMan\Messages\Conversations\Conversation;
 
-class MakeOrder extends Conversation
+class PlaceOrder extends Conversation
 {
+    protected $item = NULL;
+
+    public function __construct() {
+        //constructor overload workaround
+        $arguments = func_get_args();
+        if (count($arguments) != 0) {
+            $this->item = $arguments[0];
+        }
+    }
+
     /**
      * First question
      */
@@ -22,35 +32,10 @@ class MakeOrder extends Conversation
         return $this->ask($question, function (Answer $answer) {
             if ($answer->isInteractiveMessageReply()) {
                 if ($answer->getValue() === 'drink') {
-                    $joke = "you selected drinks";
-                    $this->say($joke);
+                    $resp = "you selected drinks";
+                    $this->say($resp);
                 } else {
                     $this->say("You selected food");
-                }
-            }
-        });
-    }
-
-    /**
-     * Example question
-     */
-    public function askReason()
-    {
-        $question = Question::create("Huh - you woke me up. What do you need?")
-            ->fallback('Unable to ask question')
-            ->callbackId('ask_reason')
-            ->addButtons([
-                Button::create('Tell a joke')->value('joke'),
-                Button::create('Give me a fancy quote')->value('quote'),
-            ]);
-
-        return $this->ask($question, function (Answer $answer) {
-            if ($answer->isInteractiveMessageReply()) {
-                if ($answer->getValue() === 'joke') {
-                    $joke = json_decode(file_get_contents('http://api.icndb.com/jokes/random'));
-                    $this->say($joke->value->joke);
-                } else {
-                    $this->say("A fancy quote");
                 }
             }
         });
@@ -61,6 +46,11 @@ class MakeOrder extends Conversation
      */
     public function run()
     {
+        //THIS WILL EVENTUALLY SUPPLY THE ITEM VALUE TO 
+        //ANOTHER FUNCTION THAT HANDLES THE ITEM DETAILS
+        if ($this->item != NULL) {
+            $this->say("You want a $this->item");
+        }
         $this->prompt();
     }
 }
