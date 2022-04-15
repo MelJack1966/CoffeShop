@@ -2,7 +2,7 @@ var botmanWidget = {
     frameEndpoint: 'chat.html',
     chatServer: 'chat.php',
     introMessage: 'Hello and welcome to Coffee Shop!',
-    placeholderText: 'Enter text here',
+    placeholderText: 'Press enter to send',
     title: 'Coffee Bot',
     mainColor: '#DF818E',
     bubbleBackground: '#FF2B47',
