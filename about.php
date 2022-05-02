@@ -29,10 +29,8 @@
             <div class="row">
             
                 <div class="col-3">
-                    <h3 class=title>Daniel Shields</h3>
-                    <p>Working towards a CIT Degree</p>    
-                    <p>Has 3 wee ones and no sleep.</p>
-                    <p>Listens to audible books while working.</p>
+                <h3 class=title>Mel McCormack</h3>
+                <p>Working towards a Degree</p><br><br>
                 </div>
 
                 <div class="col-3">
@@ -42,8 +40,15 @@
                 </div>
 
                 <div class="col-3">
-                    <h3 class=title>Alex Shishkin</h3>
+                    <h3 class=title>Ivan Miranda</h3>
                     <p>Working towards a CIT Degree</p>    <br><br>
+                    <p><p></p></p>
+                </div>
+
+                <div class="col-3">
+                <h3 class=title>Shaun Graham</h3>
+                    <p>Working towards a CIT Degree</p>    
+                    <br><br>
                 </div>
             </div>
         </div>
