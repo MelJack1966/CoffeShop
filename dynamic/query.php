@@ -58,5 +58,4 @@ function get_items($type)
     }
 
     return $items;
-
 }
