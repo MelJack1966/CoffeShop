@@ -54,7 +54,6 @@ class TakeOrder extends Conversation
             ->callbackId('order_choice')
             ->addButtons([
                 Button::create('Drinks')->value('drink'),
-                //Button::create('Food')->value('food'),
             ]);
 
         return $this->ask($question, function (Answer $answer) {
@@ -175,7 +174,6 @@ class TakeOrder extends Conversation
     /**Return T/F is user logged in or not */
     private function isLoggedIn()
     {
-        //session_start();
         return isset($_SESSION['userID']);
     }
 

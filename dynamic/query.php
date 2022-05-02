@@ -48,7 +48,6 @@ function get_items($type)
     }
 
     $sql = "SELECT menu.name, menu.price, menu.size FROM menu";
-    //echo $sql;
 
     if (!$result = $db->query($sql)) {
         die ('There was an error running query[' . $db->error . ']');
@@ -80,7 +79,6 @@ function submit_order($items, $total)
     }
 
     $sql = "INSERT INTO orders (items, total) VALUES ($itemsCsv, $total);";
-    //echo $sql;
 
     if (!$result = $db->query($sql)) {
         die ('There was an error running query[' . $db->error . ']');
