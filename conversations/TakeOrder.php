@@ -109,9 +109,6 @@ class TakeOrder extends Conversation
             if ($answer->isInteractiveMessageReply()) {
                 if ($answer->getValue() === 'y') {
                     $this->prompt();
-                    //call to get options array
-                    //$items = get_items('drink');
-                    //present drink options as buttons
                 } else {
                     $resp = "Your total will be {$this->getCartTotal()}";
                     $this->say($resp);
@@ -121,7 +118,7 @@ class TakeOrder extends Conversation
     }
 
     /**Add item to cart (order)
-     * $val = the item assoc. array w/all properties
+     * $index = the item assoc. array w/all properties
      */
     private function addToCart($index)
     {
