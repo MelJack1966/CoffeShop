@@ -145,7 +145,7 @@ hr{
 	font-weight: normal;
 }
 .col-4 p{
-	font-size: 14px;
+	font-size: 16px;
 }
 .rating .fa{
 	color: #eecb03;
@@ -190,7 +190,7 @@ small{
 	color: #ff523b;
 }
 .col-3 p{
-	font-size: 12px;
+	font-size: 16px;
 	margin: 12px 0;
 	color: #777;
 }
@@ -219,7 +219,7 @@ small{
 }
 /*div*/
 .Backgrounddiv {
-	background: url("images/homeyoga.jpg");
+	background: url("images/coffeebot1.jpg");
 }
 /*-----FOOTER-----*/
 .footer{

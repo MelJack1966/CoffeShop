@@ -1,9 +1,7 @@
 <?php
 require_once 'vendor/autoload.php';
-require_once 'dynamic/initialize.php';
-foreach(glob("conversations/*.php") as $file){
-    require_once $file;
-}
+require_once 'conversations/ExampleConversation1.php';
+require_once 'conversations/ExampleConversation2.php';
 
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\BotManFactory;
@@ -12,32 +10,26 @@ use BotMan\BotMan\Drivers\DriverManager;
 use Doctrine\Common\Cache\FilesystemCache;
 
 DriverManager::loadDriver(\BotMan\Drivers\Web\WebDriver::class);
-$config = ['conversation_cache_time' => 20];
+
+$config = [
+    'conversation_cache_time' => 60
+];
+
 $doctrineCacheDriver = new FilesystemCache("cache");
+
 $botman = BotManFactory::create($config, new DoctrineCache($doctrineCacheDriver));
 
-/////////BOT LOGIC/////////
+$botman->hears('.*ex1.*', function (BotMan $bot) {
+    $bot->startConversation(new ExampleConversation1);
+});
 
-// WELCOME MESSAGE
+$botman->hears('.*ex2.*', function (BotMan $bot) {
+    $bot->startConversation(new ExampleConversation2);
+});
+
+// Give the bot something to listen for.
 $botman->hears('.*hi.*', function (BotMan $bot) {
-    $bot->startConversation(new Welcome);
-});
-$botman->hears('.*hello.*', function (BotMan $bot) {
-    $bot->startConversation(new Welcome);
-});
-
-// STRAIGHT TO THE ORDER
-$botman->hears(".*like.* {item}", function(Botman $bot, $item) {
-    $bot->startConversation(new TakeOrder($item));
-});
-$botman->hears(".*want.* {item}", function(Botman $bot, $item) {
-    $bot->startConversation(new TakeOrder($item));
-});
-$botman->hears(".*need.* {item}", function(Botman $bot, $item) {
-    $bot->startConversation(new TakeOrder($item));
-});
-$botman->hears(".*get.* {item}", function(Botman $bot, $item) {
-    $bot->startConversation(new TakeOrder($item));
+    $bot->reply('Hello! Would you like some coffee?');
 });
 
 $botman->hears('.*bye.*', function (BotMan $bot) {
@@ -47,16 +39,7 @@ $botman->hears('.*bye.*', function (BotMan $bot) {
 });
 
 $botman->fallback(function($bot) {
-    $bot->startConversation(new Suggest);
-});
-
-// TEST CONVERSATIONS
-$botman->hears('.*ex1.*', function (BotMan $bot) {
-    $bot->startConversation(new ExampleConversation1);
-});
-
-$botman->hears('.*ex2.*', function (BotMan $bot) {
-    $bot->startConversation(new ExampleConversation2);
+    $bot->reply('Sorry, I did not understand what you typed. Try using one of these prompts: ...');
 });
 
 // Start listening

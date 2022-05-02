@@ -1,12 +1,12 @@
 var botmanWidget = {
     frameEndpoint: 'chat.html',
     chatServer: 'chat.php',
-    introMessage: 'Hello and welcome to Coffee Shop!<br><br>To <b>start over</b> at any time just say "hi" or "hello"',
-    placeholderText: 'Press ENTER to send',
-    title: 'Coffee Bot',
-    mainColor: '#DF818E',
-    bubbleBackground: '#FF2B47',
-    bubbleAvatarUrl: 'images/icons/coffee1.png'
+    introMessage: 'Welcome to Coffee Shop, what can I get started for you today?',
+    placeholderText: 'I would like...',
+    title: 'ChatBot',
+    mainColor: '#F28240',
+    bubbleBackground: '#F28240',
+    bubbleAvatarUrl: 'https://www.applozic.com/assets/resources/images/Chat-Bot-Icon@512px.svg'
 };
 
 window.onload = function() {

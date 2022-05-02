@@ -86,3 +86,4 @@ function submit_order($items, $total)
         die ('There was an error running query[' . $db->error . ']');
     }
 }
+
