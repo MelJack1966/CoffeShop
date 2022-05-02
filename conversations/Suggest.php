@@ -32,7 +32,7 @@ class Suggest extends Conversation
                 //OPTION 1
                 if ($answer->getValue() === $this->options['order']) {
                     $this->say("You selected: $answer");
-                    $this->bot->startConversation(new PlaceOrder);
+                    $this->bot->startConversation(new TakeOrder);
                 } else {
                     $this->say("You selected a placeholder option");
                 }

@@ -6,7 +6,7 @@ include ("query.php");
 DEFINE ('DB_USER', 'root');
 DEFINE ('DB_PASSWORD', '');
 DEFINE ('DB_HOST', 'localhost');
-DEFINE ('DB_NAME', 'ics325fa2113');
+DEFINE ('DB_NAME', 'coffeeshopdb');
 
 //***************************************  XAMPP ******************************************
 

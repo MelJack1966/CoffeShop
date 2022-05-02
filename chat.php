@@ -1,5 +1,6 @@
 <?php
 require_once 'vendor/autoload.php';
+require_once 'dynamic/initialize.php';
 foreach(glob("conversations/*.php") as $file){
     require_once $file;
 }
@@ -27,16 +28,16 @@ $botman->hears('.*hello.*', function (BotMan $bot) {
 
 // STRAIGHT TO THE ORDER
 $botman->hears(".*like.* {item}", function(Botman $bot, $item) {
-    $bot->startConversation(new PlaceOrder($item));
+    $bot->startConversation(new TakeOrder($item));
 });
 $botman->hears(".*want.* {item}", function(Botman $bot, $item) {
-    $bot->startConversation(new PlaceOrder($item));
+    $bot->startConversation(new TakeOrder($item));
 });
 $botman->hears(".*need.* {item}", function(Botman $bot, $item) {
-    $bot->startConversation(new PlaceOrder($item));
+    $bot->startConversation(new TakeOrder($item));
 });
 $botman->hears(".*get.* {item}", function(Botman $bot, $item) {
-    $bot->startConversation(new PlaceOrder($item));
+    $bot->startConversation(new TakeOrder($item));
 });
 
 $botman->hears('.*bye.*', function (BotMan $bot) {

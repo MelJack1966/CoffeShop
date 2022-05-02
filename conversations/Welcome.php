@@ -18,7 +18,7 @@ class Welcome extends Conversation
                 $answer->getValue() === "ye" || 
                 $answer->getValue() === "y" ||
                 $answer->getValue() === "yeah") {
-                $this->bot->startConversation(new PlaceOrder);
+                $this->bot->startConversation(new TakeOrder);
             }
             else if(
                 $answer->getValue() == "no" || 
