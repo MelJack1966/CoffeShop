@@ -39,6 +39,13 @@ if (isset($_SESSION['loggedin'])){
 		<div class="row">
 			
 			<p>The best energy for the day starts with the coffee Aroma.</p>
+			
+	</div>
+	<div class="row">
+			
+			<div class="col-6">
+				<img src="images/menu.png">
+	</div>
 		</div>
 	</div>
 	<br><br><br><br>
