@@ -29,6 +29,7 @@ function LoginUpdate($userID){
     $query = "UPDATE users SET lastlogin = now() WHERE userID = '$userID' ";
         $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 }
+
 /**
  * fetch menu items from db
  */
@@ -58,4 +59,4 @@ function get_items($type)
 
     return $items;
 
-?>
+}
