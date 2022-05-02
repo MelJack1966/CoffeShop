@@ -5,3 +5,4 @@
   $db = db_connect();
   $errors = array();
   $config = array();
+  session_start();

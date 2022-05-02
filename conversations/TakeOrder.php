@@ -19,6 +19,8 @@ class TakeOrder extends Conversation
     protected $itemIndex = "0";
     /**Used in sales tax calc */
     private const TAX_RATE = 0.07254;
+    /**Used in order total calc */
+    private const MEMBER_DISCOUNT = 0.25;
 
     public function __construct()
     {
@@ -115,6 +117,9 @@ class TakeOrder extends Conversation
                     $this->prompt();
                 } else {
                     $resp = "Your total (with tax) will be {$this->getCartTotal()}";
+                    if ($this->isLoggedIn()) {
+                        $resp .= "<br><br>*Includes member discount of $" . self::MEMBER_DISCOUNT;
+                    }
                     $this->say($resp);
                     submit_order($this->getCartItems(), $this->getCartTotalNoFmt());
                 }
@@ -140,20 +145,38 @@ class TakeOrder extends Conversation
     }
 
     /**returns tax amount of ~0.7% */
-    private function getTaxAmt($total) {
-        return $total*(self::TAX_RATE);
+    private function getTaxAmt($total)
+    {
+        return $total * (self::TAX_RATE);
     }
 
     /**returns cart total in $XX.XX format */
     private function getCartTotal()
     {
-        return $this->money_format(($this->cartTotal + $this->getTaxAmt($this->cartTotal)));
+        return $this->money_format(($this->cartTotal + $this->getTaxAmt($this->cartTotal) - $this->getDiscount()));
     }
 
     /**returns cart total without a dollar sign */
     private function getCartTotalNoFmt()
     {
         return number_format($this->cartTotal + $this->getTaxAmt($this->cartTotal), 2);
+    }
+
+    /**Return positive dollar value discount for logged in users */
+    private function getDiscount()
+    {
+        if ($this->isLoggedIn()) {
+            return self::MEMBER_DISCOUNT;
+        } else {
+            return 0;
+        }
+    }
+
+    /**Return T/F is user logged in or not */
+    private function isLoggedIn()
+    {
+        //session_start();
+        return isset($_SESSION['userID']);
     }
 
     /**retuns a formatted string for a dollar amount given. Ex: $XX.XX */
