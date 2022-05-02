@@ -17,6 +17,8 @@ class TakeOrder extends Conversation
     protected $cartTotal = 0.00;
     /**used to temporarily store current item info since Answers only support primitives */
     protected $itemIndex = "0";
+    /**Used in sales tax calc */
+    private const TAX_RATE = 0.07254;
 
     public function __construct()
     {
@@ -49,8 +51,8 @@ class TakeOrder extends Conversation
             ->fallback('Unable to ask question')
             ->callbackId('order_choice')
             ->addButtons([
-                Button::create('Drink(s)')->value('drink'),
-                Button::create('Food')->value('food'),
+                Button::create('Drinks')->value('drink'),
+                //Button::create('Food')->value('food'),
             ]);
 
         return $this->ask($question, function (Answer $answer) {
@@ -61,7 +63,7 @@ class TakeOrder extends Conversation
                     //present drink options as buttons
                     $this->displayItems($items);
                 } else {
-                    //$this->say("You selected food");
+                    $this->say("not implemented");
                 }
             }
         });
@@ -76,9 +78,10 @@ class TakeOrder extends Conversation
             //item var contains all properties in assoc. array
             //echo var_dump($item);
             $this->menu["$index"] = $item;
+            $price = "{$this->money_format($item['price'])}";
             $name = $item['name'];
             $size = "({$item['size']} oz.)";
-            $buttons[] = Button::create("$name $size")->value($index);
+            $buttons[] = Button::create("$name $size - $price")->value($index);
         }
 
         $question = Question::create("Please select a drink: ")
@@ -96,7 +99,8 @@ class TakeOrder extends Conversation
         });
     }
 
-    private function anythingElsePrompt() {
+    private function anythingElsePrompt()
+    {
         $question = Question::create("Would you like to order anything else?")
             ->fallback('Unable to ask question')
             ->callbackId('additional_order_choice')
@@ -110,8 +114,9 @@ class TakeOrder extends Conversation
                 if ($answer->getValue() === 'y') {
                     $this->prompt();
                 } else {
-                    $resp = "Your total will be {$this->getCartTotal()}";
+                    $resp = "Your total (with tax) will be {$this->getCartTotal()}";
                     $this->say($resp);
+                    submit_order($this->getCartItems(), $this->getCartTotalNoFmt());
                 }
             }
         });
@@ -134,18 +139,38 @@ class TakeOrder extends Conversation
         $this->cartTotal += floatVal($val);
     }
 
-    /**retuns a formatted string for the total price of items in cart. Ex: $XX.XX */
-    private function getCartTotal() {
-        return "\$".number_format(floatval($this->cartTotal), 2);
+    /**returns tax amount of ~0.7% */
+    private function getTaxAmt($total) {
+        return $total*(self::TAX_RATE);
+    }
+
+    /**returns cart total in $XX.XX format */
+    private function getCartTotal()
+    {
+        return $this->money_format(($this->cartTotal + $this->getTaxAmt($this->cartTotal)));
+    }
+
+    /**returns cart total without a dollar sign */
+    private function getCartTotalNoFmt()
+    {
+        return number_format($this->cartTotal + $this->getTaxAmt($this->cartTotal), 2);
+    }
+
+    /**retuns a formatted string for a dollar amount given. Ex: $XX.XX */
+    private function money_format($val)
+    {
+        return "\$" . number_format(floatval($val), 2);
     }
 
     /**Return array of cart item names */
-    private function getCartItems() {
+    private function getCartItems()
+    {
         return $this->cartItems;
     }
 
     /**Return string name of menu item + size. Takes an index arg*/
-    private function getItemDetails($index) {
+    private function getItemDetails($index)
+    {
         $name = $this->menu["$index"]['name'];
         $size = $this->menu["$index"]['size'];
         return "$name ($size oz.)";

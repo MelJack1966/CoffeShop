@@ -59,3 +59,30 @@ function get_items($type)
 
     return $items;
 }
+
+/**
+ * submit order to db
+ * $items = array of item names in order
+ * $total = Total cost of the order
+ */
+function submit_order($items, $total)
+{
+    global $db;
+
+    $itemsCsv = "'";
+
+    foreach($items as $index => $item) {
+        if(sizeof($items)-1 > $index) {
+            $itemsCsv .= "$item,"; //added comma for next entry
+        } else {
+            $itemsCsv .= "$item'"; //no next entry
+        }
+    }
+
+    $sql = "INSERT INTO orders (items, total) VALUES ($itemsCsv, $total);";
+    //echo $sql;
+
+    if (!$result = $db->query($sql)) {
+        die ('There was an error running query[' . $db->error . ']');
+    }
+}
