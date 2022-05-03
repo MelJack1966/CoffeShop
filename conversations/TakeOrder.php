@@ -158,7 +158,7 @@ class TakeOrder extends Conversation
     /**returns cart total without a dollar sign */
     private function getCartTotalNoFmt()
     {
-        return number_format($this->cartTotal + $this->getTaxAmt($this->cartTotal), 2);
+        return (number_format($this->cartTotal + $this->getTaxAmt($this->cartTotal), 2) - $this->getDiscount());
     }
 
     /**Return positive dollar value discount for logged in users */
